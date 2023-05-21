@@ -84,7 +84,7 @@ func _on_spawn_env_timer_timeout():
 func _on_spawn_obstacle_timer_timeout():
 	randomize()
 	#print("spawned an obstacle!")
-	spawn_obstacle_timer.wait_time = randi() % 5 + 1
+	spawn_obstacle_timer.wait_time = randi() % 5 + 10
 	
 	var random_line_num = randi() % 3
 	var prev_rand_line_n = null
@@ -93,10 +93,10 @@ func _on_spawn_obstacle_timer_timeout():
 	
 	for i in line_count:
 		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
-				random_line_num = randi() % 3
+			random_line_num = randi() % 3
 		prev_rand_line_n = random_line_num
 
-		var rock_inst = poop.instance()
+		var rock_inst = rock.instance()
 # warning-ignore:return_value_discarded
 		rock_inst.connect("player_entered", self, "on_player_entered_rock")
 	
