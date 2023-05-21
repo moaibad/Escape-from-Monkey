@@ -16,8 +16,8 @@ onready var fence: PackedScene = preload("res://models/cartoon-assets/fence.tscn
 onready var rock:  PackedScene = preload("res://models/cartoon-assets/rock.tscn")
 onready var poop:  PackedScene = preload("res://models/cartoon-assets/assets/poop/poop.tscn")
 
-var startz: float = -50.0
-var road_spawnx: Array = [-2, 0, 2]
+var startz: float = -40.0
+var road_spawnx: Array = [-3, 0, 3]
 var tree_startx: Array = [10, -10]
 
 onready var env_assets: Array = [tree1, tree2]
