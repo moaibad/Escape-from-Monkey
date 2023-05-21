@@ -11,7 +11,7 @@ onready var coin: PackedScene = preload("res://scenes/coin.tscn")
 onready var tree1: PackedScene = preload("res://models/cartoon-assets/assets/tree/tree.tscn")
 onready var tree2: PackedScene = preload("res://models/cartoon-assets/assets/tree/tree.tscn")
 
-onready var fence: PackedScene = preload("res://models/cartoon-assets/assets/bush/bush.tscn")
+onready var fence: PackedScene = preload("res://models/cartoon-assets/fence.tscn")
 
 onready var rock:  PackedScene = preload("res://models/cartoon-assets/rock.tscn")
 onready var poop:  PackedScene = preload("res://models/cartoon-assets/assets/poop/poop.tscn")

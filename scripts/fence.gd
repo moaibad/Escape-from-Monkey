@@ -5,7 +5,7 @@ signal body_entered
 
 # warning-ignore:unused_argument
 func _process(delta):
-	global_translate(Vector3(0, 0, 0.015))
+	global_translate(Vector3(0, 0, 0.01))
 
 
 # warning-ignore:unused_argument
