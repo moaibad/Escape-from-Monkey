@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://models/cartoon-assets/assets/batu_mao/Stone_001.material" type="Material" id=1]
 [ext_resource path="res://scripts/env_script.gd" type="Script" id=2]
@@ -18,8 +18,18 @@ surfaces/0 = {
 "vertex_count": 3074
 }
 
+[sub_resource type="BoxShape" id=2]
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Cube" type="MeshInstance" parent="."]
 mesh = SubResource( 1 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1.30518, 0, 0, 0, 0.870631, 0, 0, 0, 0.765216, 0.413695, -0.40717, -0.248004 )
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]

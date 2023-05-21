@@ -96,7 +96,7 @@ func _on_spawn_obstacle_timer_timeout():
 			random_line_num = randi() % 3
 		prev_rand_line_n = random_line_num
 		
-		var rock_inst = rock.instance()
+		var rock_inst = poop.instance()
 # warning-ignore:return_value_discarded
 		rock_inst.connect("player_entered", self, "on_player_entered_rock")
 	

@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://models/cartoon-assets/assets/poop/Material_002.material" type="Material" id=1]
 [ext_resource path="res://models/cartoon-assets/assets/poop/Material_003.material" type="Material" id=2]
 [ext_resource path="res://models/cartoon-assets/assets/poop/Material_001.material" type="Material" id=3]
 [ext_resource path="res://models/cartoon-assets/assets/poop/Material_004.material" type="Material" id=4]
-[ext_resource path="res://scripts/fence.gd" type="Script" id=5]
+[ext_resource path="res://scripts/env_script.gd" type="Script" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "ee1_Torus003"
@@ -66,6 +66,8 @@ surfaces/0 = {
 "vertex_count": 300
 }
 
+[sub_resource type="BoxShape" id=5]
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 5 )
 
@@ -84,3 +86,11 @@ mesh = SubResource( 3 )
 [node name="Cone" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.284969, 0 )
 mesh = SubResource( 4 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 0.390005, 0, 0, 0, 0.906202, 0, 0, 0, 0.221414, 0, -0.652792, 0 )
+shape = SubResource( 5 )
+
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]

@@ -1321,7 +1321,7 @@ nodes/jump-shot/position = Vector2( 160, 80 )
 nodes/output/position = Vector2( 400, 80 )
 nodes/run/node = SubResource( 15 )
 nodes/run/position = Vector2( -260, 100 )
-node_connections = [ "TimeScale", 0, "jump", "jump-shot", 0, "run", "jump-shot", 1, "TimeScale", "output", 0, "jump-shot" ]
+node_connections = [ "jump-shot", 0, "run", "jump-shot", 1, "TimeScale", "TimeScale", 0, "jump", "output", 0, "jump-shot" ]
 
 [node name="player" type="Spatial"]
 
@@ -1715,7 +1715,7 @@ mesh = SubResource( 7 )
 skin = SubResource( 8 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Skeleton"]
-transform = Transform( 0.996354, -0.0587617, 0.0618655, 0.0631176, 0.995478, -0.0709865, -0.0574145, 0.0746322, 0.995557, 0.0930016, 0.188874, 0.251893 )
+transform = Transform( 0.973022, -0.0958202, 0.209875, 0.226327, 0.219861, -0.948913, 0.0447815, 0.970814, 0.235616, 0.108736, 0.306981, -0.0207546 )
 bone_name = "LFootTongue"
 
 [node name="Area" type="Area" parent="Skeleton/BoneAttachment" groups=["player_skeleton"]]
