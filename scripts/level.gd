@@ -13,7 +13,7 @@ onready var tree2: PackedScene = preload("res://models/cartoon-assets/assets/tre
 
 onready var fence: PackedScene = preload("res://models/cartoon-assets/fence.tscn")
 
-onready var rock:  PackedScene = preload("res://models/cartoon-assets/rock.tscn")
+onready var rock:  PackedScene = preload("res://models/cartoon-assets/assets/batu_mao/Batu_mao.tscn")
 onready var poop:  PackedScene = preload("res://models/cartoon-assets/assets/poop/poop.tscn")
 
 var startz: float = -40.0
@@ -84,7 +84,7 @@ func _on_spawn_env_timer_timeout():
 func _on_spawn_obstacle_timer_timeout():
 	randomize()
 	#print("spawned an obstacle!")
-	spawn_obstacle_timer.wait_time = randi() % 5 + 10
+	spawn_obstacle_timer.wait_time = randi() % 5 + 1
 	
 	var random_line_num = randi() % 3
 	var prev_rand_line_n = null
@@ -95,7 +95,7 @@ func _on_spawn_obstacle_timer_timeout():
 		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
 			random_line_num = randi() % 3
 		prev_rand_line_n = random_line_num
-
+		
 		var rock_inst = rock.instance()
 # warning-ignore:return_value_discarded
 		rock_inst.connect("player_entered", self, "on_player_entered_rock")
