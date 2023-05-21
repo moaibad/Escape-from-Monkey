@@ -18,7 +18,7 @@ onready var poop:  PackedScene = preload("res://models/cartoon-assets/assets/poo
 
 var startz: float = -40.0
 var road_spawnx: Array = [-3, 0, 3]
-var tree_startx: Array = [10, -10]
+var tree_startx: Array = [30,20,10, -10,-20,-30]
 
 onready var env_assets: Array = [tree1, tree2]
 
@@ -68,15 +68,24 @@ func _on_spawn_timer_timeout():
 func _on_spawn_env_timer_timeout():
 	randomize()
 	#print("tree spawned")
-	var side: int = tree_startx[randi() % 2]
+	var side: int = tree_startx[randi() % 6]
+	var side2: int = tree_startx[randi() % 6]
 	var asset = env_assets[randi() % env_assets.size()].instance()
+	var asset2 = env_assets[randi() % env_assets.size()].instance()
 	add_child(asset)
+	add_child(asset2)
 	asset.global_transform.origin = Vector3(
 		side,
 		0,
 		startz
 	)
+	asset2.global_transform.origin = Vector3(
+		side2,
+		0,
+		startz
+	)
 	asset.rotation_degrees.y = rand_range(0, 360)
+	asset2.rotation_degrees.y = rand_range(0, 360)
 	spawn_env_timer.wait_time = rand_range(1, 2)
 
 
