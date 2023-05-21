@@ -6,7 +6,7 @@ signal player_entered
 
 
 func _ready():
-	timer.wait_time = 10
+	timer.wait_time = 15
 	timer.autostart = true
 # warning-ignore:return_value_discarded
 	timer.connect("timeout", self, "timer_timeout")
