@@ -57,8 +57,8 @@ func _physics_process(delta) -> void:
 	velocity = direction * MOVE_SPEED
 	global_transform.origin.x = clamp(
 		global_transform.origin.x,
-		starting_point.x - 30,
-		starting_point.x + 30
+		starting_point.x - 3,
+		starting_point.x + 3
 	)
 	
 	# warning-ignore:return_value_discarded
