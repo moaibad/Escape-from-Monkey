@@ -5,6 +5,7 @@ onready var player: KinematicBody = $player_body
 onready var spawn_timer: Timer = $spawn_timer
 onready var spawn_env_timer: Timer = $spawn_env_timer
 onready var spawn_obstacle_timer: Timer = $spawn_obstacle_timer
+onready var spawn_poop_timer: Timer = $spawn_obstacle_timer
 
 onready var coin: PackedScene = preload("res://scenes/coin.tscn")
 
@@ -13,12 +14,12 @@ onready var tree2: PackedScene = preload("res://models/cartoon-assets/assets/tre
 
 onready var fence: PackedScene = preload("res://models/cartoon-assets/fence.tscn")
 
-onready var rock:  PackedScene = preload("res://models/cartoon-assets/assets/batu_mao/Batu_mao.tscn")
+onready var rock:  PackedScene = preload("res://models/cartoon-assets/assets/rock/rock.tscn")
 onready var poop:  PackedScene = preload("res://models/cartoon-assets/assets/poop/poop.tscn")
 
 var startz: float = -40.0
-var road_spawnx: Array = [-3, 0, 3]
-var tree_startx: Array = [30,20,10, -10,-20,-30]
+var road_spawnx: Array = [-3, -1.5, 0, 1.5, 3]
+var tree_startx: Array = [30, 20, 10, -10, -20, -30]
 
 onready var env_assets: Array = [tree1, tree2]
 
@@ -86,18 +87,17 @@ func _on_spawn_obstacle_timer_timeout():
 	#print("spawned an obstacle!")
 	spawn_obstacle_timer.wait_time = randi() % 5 + 1
 	
-	var random_line_num = randi() % 3
+	var random_line_num = randi() % 5
 	var prev_rand_line_n = null
 	
 	var line_count: int = randi() % 4 + 1
 	
 	for i in line_count:
 		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
-			random_line_num = randi() % 3
+			random_line_num = randi() % 5
 		prev_rand_line_n = random_line_num
 		
-		var rock_inst = poop.instance()
-# warning-ignore:return_value_discarded
+		var rock_inst = rock.instance()
 		rock_inst.connect("player_entered", self, "on_player_entered_rock")
 	
 		add_child(rock_inst)
@@ -111,4 +111,35 @@ func _on_spawn_obstacle_timer_timeout():
 
 
 func on_player_entered_rock():
+	player.is_dead = true
+
+
+func _on_spawn_poop_timer_timeout():
+	randomize()
+	#print("spawned an obstacle!")
+	spawn_poop_timer.wait_time = randi() % 5 + 1
+	
+	var random_line_num = randi() % 5
+	var prev_rand_line_n = null
+	
+	var line_count: int = randi() % 4 + 1
+	
+	for i in line_count:
+		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
+			random_line_num = randi() % 5
+		prev_rand_line_n = random_line_num
+		
+		var poop_inst = poop.instance()
+		poop_inst.connect("player_entered", self, "on_player_entered_poop")
+	
+		add_child(poop_inst)
+	
+		poop_inst.global_transform.origin = Vector3(
+			road_spawnx[random_line_num],
+			0.0,
+			startz
+		)
+		poop_inst.rotation_degrees.y = rand_range(0, 360)
+
+func on_player_entered_poop():
 	player.is_dead = true

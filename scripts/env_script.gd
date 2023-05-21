@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	global_translate(Vector3(0, 0, 0.08))
 	
-	
+
 
 func timer_timeout():
 	#print("tree destroyed")

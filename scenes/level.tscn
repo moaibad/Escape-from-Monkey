@@ -26,6 +26,10 @@ autostart = true
 wait_time = 0.1
 autostart = true
 
+[node name="spawn_poop_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [node name="spawn_obstacle_timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
@@ -47,4 +51,5 @@ material/0 = SubResource( 2 )
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="spawn_env_timer" to="." method="_on_spawn_env_timer_timeout"]
+[connection signal="timeout" from="spawn_poop_timer" to="." method="_on_spawn_poop_timer_timeout"]
 [connection signal="timeout" from="spawn_obstacle_timer" to="." method="_on_spawn_obstacle_timer_timeout"]
