@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/monkey-128368.mp3-412c0134565c11375eb239812e065131.mp3str"
+
+[deps]
+
+source_file="res://sounds/monkey-128368.mp3"
+dest_files=[ "res://.import/monkey-128368.mp3-412c0134565c11375eb239812e065131.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

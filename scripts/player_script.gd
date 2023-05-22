@@ -5,6 +5,8 @@ extends KinematicBody
 onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
 onready var audio_jump: AudioStreamPlayer3D = $JumpSoundEffect
 
+onready var monkey_sound: AudioStreamPlayer3D = $Monkey
+
 onready var tween : Tween = $Tween
 onready var animation_player: AnimationPlayer = $player/AnimationPlayer
 onready var animation_tree: AnimationTree = $player/AnimationTree
@@ -20,6 +22,7 @@ var timer : int = 0
 
 func _ready() -> void:
 	starting_point = global_transform.origin
+	monkey_sound.play()
 
 var coin_count: int = 0
 # warning-ignore:unused_argument
@@ -80,5 +83,7 @@ func _physics_process(delta) -> void:
 		get_node("health/1").visible = false
 		
 	if health <= 0 :
-		print('dead')
+		get_tree().change_scene("res://scenes/gameOver.tscn")
+		if get_tree().change_scene("res://scenes/gameOver.tscn") != OK:
+			print("Scene Tidak Ada")
 		health = 4

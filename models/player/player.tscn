@@ -1715,7 +1715,7 @@ mesh = SubResource( 7 )
 skin = SubResource( 8 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Skeleton"]
-transform = Transform( 0.973022, -0.0958202, 0.209875, 0.226327, 0.219861, -0.948913, 0.0447815, 0.970814, 0.235616, 0.108736, 0.306981, -0.0207546 )
+transform = Transform( 0.983398, 0.0610325, 0.170893, 0.0535515, 0.802194, -0.594658, -0.173382, 0.593936, 0.785608, 0.0587089, 0.131564, -0.292339 )
 bone_name = "LFootTongue"
 
 [node name="Area" type="Area" parent="Skeleton/BoneAttachment" groups=["player_skeleton"]]

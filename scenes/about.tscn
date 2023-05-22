@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://models/cartoon-assets/assets/image/back_btn_hover.png" type="Texture" id=1]
+[ext_resource path="res://models/cartoon-assets/assets/image/back_btn_pressed.png" type="Texture" id=2]
+[ext_resource path="res://models/cartoon-assets/assets/image/about.png" type="Texture" id=3]
+[ext_resource path="res://models/cartoon-assets/assets/image/back_btn_normal.png" type="Texture" id=4]
+[ext_resource path="res://scripts/about.gd" type="Script" id=5]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 513, 302 )
+texture = ExtResource( 3 )
+
+[node name="Back" type="TextureButton" parent="Sprite"]
+margin_left = -403.0
+margin_top = 168.0
+margin_right = -246.0
+margin_bottom = 213.0
+rect_scale = Vector2( 1.3, 1.3 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 1 )
+
+[connection signal="pressed" from="Sprite/Back" to="." method="_on_Back_pressed"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://models/cartoon-assets/assets/image/about_btn_pressed.png" type="Texture" id=1]
+[ext_resource path="res://models/cartoon-assets/assets/image/about_btn_hover.png" type="Texture" id=2]
+[ext_resource path="res://models/cartoon-assets/assets/image/play_btn_normal.png" type="Texture" id=3]
+[ext_resource path="res://models/cartoon-assets/assets/image/play_btn_hover.png" type="Texture" id=4]
+[ext_resource path="res://models/cartoon-assets/assets/image/play_btn_pressed.png" type="Texture" id=5]
+[ext_resource path="res://models/cartoon-assets/assets/image/home.png" type="Texture" id=6]
+[ext_resource path="res://models/cartoon-assets/assets/image/guide_btn_normal.png" type="Texture" id=7]
+[ext_resource path="res://models/cartoon-assets/assets/image/guide_btn_pressed.png" type="Texture" id=8]
+[ext_resource path="res://models/cartoon-assets/assets/image/guide_btn_hover.png" type="Texture" id=9]
+[ext_resource path="res://models/cartoon-assets/assets/image/about_btn_normal.png" type="Texture" id=10]
+[ext_resource path="res://models/cartoon-assets/assets/image/exit_btn_hover.png" type="Texture" id=11]
+[ext_resource path="res://models/cartoon-assets/assets/image/exit_btn_normal.png" type="Texture" id=12]
+[ext_resource path="res://models/cartoon-assets/assets/image/exit_btn_pressed.png" type="Texture" id=13]
+[ext_resource path="res://scripts/mainMenu.gd" type="Script" id=14]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 14 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+texture = ExtResource( 6 )
+
+[node name="Play" type="TextureButton" parent="Sprite"]
+margin_left = -110.0
+margin_top = -88.0
+margin_right = 47.0
+margin_bottom = -43.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
+
+[node name="Guide" type="TextureButton" parent="Sprite"]
+margin_left = -109.0
+margin_top = 1.0
+margin_right = 48.0
+margin_bottom = 46.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 9 )
+
+[node name="About" type="TextureButton" parent="Sprite"]
+margin_left = -107.0
+margin_top = 98.0
+margin_right = 50.0
+margin_bottom = 143.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+
+[node name="Exit" type="TextureButton" parent="Sprite"]
+margin_left = -107.0
+margin_top = 194.0
+margin_right = 50.0
+margin_bottom = 239.0
+rect_scale = Vector2( 1.5, 1.5 )
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 11 )
+
+[connection signal="pressed" from="Sprite/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Sprite/Guide" to="." method="_on_Guide_pressed"]
+[connection signal="pressed" from="Sprite/About" to="." method="_on_About_pressed"]
+[connection signal="pressed" from="Sprite/Exit" to="." method="_on_Exit_pressed"]
