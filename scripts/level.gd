@@ -176,6 +176,7 @@ func _on_spawn_mushroom_timer_timeout():
 
 func on_player_entered_mushroom():
 	audio_healtup.play()
-	player.health += 1
+	if player.health <= 3:
+		player.health += 1
 	
 

@@ -26,13 +26,11 @@ var trauma := 0.0
 
 const MOVE_SPEED: float = 4.0
 var starting_point: Vector3 = Vector3.ZERO
-
 var is_jumping: bool = false
-
 var health: int = 4
+var timer : int = 0
 
 func _ready() -> void:
-	gui.get_node("label").text = "Coins: "
 	starting_point = global_transform.origin
 
 var shake_amount = 1.0
@@ -44,6 +42,10 @@ func _physics_process(delta) -> void:
 	var velocity: Vector3 = Vector3.ZERO
 	var direction: Vector3 = Vector3.ZERO
 	camera.rotation_degrees = initial_rotation
+	
+	timer += 1
+	$Timer._start_timer(timer)
+	
 	
 	if (Input.is_action_pressed("move_left")):
 		direction.x -= 1
@@ -98,7 +100,6 @@ func _physics_process(delta) -> void:
 		camera.rotation_degrees.y = initial_rotation.x + max_y * get_shake_intensity()
 		camera.rotation_degrees.z = initial_rotation.z + max_z * get_shake_intensity()
 		coin_count += 1
-		gui.get_node("label").text = "Coins: " + str(coin_count)
 		health = 4
 		
 
