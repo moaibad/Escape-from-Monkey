@@ -3,6 +3,7 @@ extends KinematicBody
 
 # warning-ignore:unused_class_variable
 onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+onready var audio_jump: AudioStreamPlayer3D = $JumpSoundEffect
 # warning-ignore:unused_class_variable
 onready var tween : Tween = $Tween
 onready var animation_player: AnimationPlayer = $player/AnimationPlayer
@@ -54,6 +55,7 @@ func _physics_process(delta) -> void:
 	direction = direction.normalized()
 	if (Input.is_action_just_pressed("jump")):
 		is_jumping = true
+		audio_jump.play()
 	if (Input.is_action_just_released("jump")):
 		is_jumping = false
 	velocity = direction * MOVE_SPEED
