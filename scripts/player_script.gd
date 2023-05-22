@@ -29,7 +29,7 @@ var starting_point: Vector3 = Vector3.ZERO
 
 var is_jumping: bool = false
 
-var is_dead: bool = false
+var health: int = 4
 
 func _ready() -> void:
 	gui.get_node("label").text = "Coins: "
@@ -65,7 +65,33 @@ func _physics_process(delta) -> void:
 	move_and_slide(velocity)
 	if is_jumping: animation_tree.set("parameters/jump-shot/active", true)
 	
-	if is_dead:
+	if health <= 4:
+		get_node("health/4").visible = true
+		get_node("health/3").visible = true
+		get_node("health/2").visible = true
+		get_node("health/1").visible = true
+	if health <= 3:
+		get_node("health/4").visible = false
+		get_node("health/3").visible = true
+		get_node("health/2").visible = true
+		get_node("health/1").visible = true
+	if health <= 2:
+		get_node("health/4").visible = false
+		get_node("health/3").visible = false
+		get_node("health/2").visible = true
+		get_node("health/1").visible = true
+	if health <= 1:
+		get_node("health/4").visible = false
+		get_node("health/3").visible = false
+		get_node("health/2").visible = false
+		get_node("health/1").visible = true
+	if health <= 0:
+		get_node("health/4").visible = false
+		get_node("health/3").visible = false
+		get_node("health/2").visible = false
+		get_node("health/1").visible = false
+		
+	if health <= 0 :
 		print('dead')
 		trauma = max(trauma - delta * trauma_reduction_rate, 0.0)
 		camera.rotation_degrees.x = initial_rotation.x + max_x * get_shake_intensity()
@@ -73,7 +99,7 @@ func _physics_process(delta) -> void:
 		camera.rotation_degrees.z = initial_rotation.z + max_z * get_shake_intensity()
 		coin_count += 1
 		gui.get_node("label").text = "Coins: " + str(coin_count)
-		is_dead = false
+		health = 4
 		
 
 func get_shake_intensity() -> float:

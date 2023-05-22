@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://models/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player_script.gd" type="Script" id=2]
 [ext_resource path="res://sounds/coinpickup.wav" type="AudioStream" id=3]
+[ext_resource path="res://models/heart.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -47,5 +48,39 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="health" type="Spatial" parent="."]
+
+[node name="1" type="TextureRect" parent="health"]
+margin_left = 810.0
+margin_top = 7.0
+margin_right = 1202.0
+margin_bottom = 334.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="2" type="TextureRect" parent="health"]
+margin_left = 862.0
+margin_top = 6.0
+margin_right = 1254.0
+margin_bottom = 333.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="3" type="TextureRect" parent="health"]
+margin_left = 916.0
+margin_top = 6.0
+margin_right = 1308.0
+margin_bottom = 333.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="4" type="TextureRect" parent="health"]
+margin_left = 965.0
+margin_top = 6.0
+margin_right = 1357.0
+margin_bottom = 333.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
 
 [connection signal="area_entered" from="collision_area" to="." method="_on_collision_area_entered"]

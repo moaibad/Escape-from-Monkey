@@ -113,7 +113,7 @@ func _on_spawn_obstacle_timer_timeout():
 
 
 func on_player_entered_rock():
-	player.is_dead = true
+	player.health -= 1
 
 
 func _on_spawn_poop_timer_timeout():
@@ -143,6 +143,9 @@ func _on_spawn_poop_timer_timeout():
 		)
 		poop_inst.rotation_degrees.y = rand_range(0, 360)
 
+func on_player_entered_poop():
+	player.health = 0
+	
 func _on_spawn_mushroom_timer_timeout():
 	randomize()
 	#print("spawned an obstacle!")
@@ -151,24 +154,21 @@ func _on_spawn_mushroom_timer_timeout():
 	var random_line_num = randi() % 5
 	var prev_rand_line_n = null
 	
-	var line_count: int = randi() % 4 + 1
+	while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
+		random_line_num = randi() % 5
+	prev_rand_line_n = random_line_num
 	
-	for i in line_count:
-		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
-			random_line_num = randi() % 5
-		prev_rand_line_n = random_line_num
-		
-		var mushroom_inst = mushroom.instance()
-		mushroom_inst.connect("player_entered", self, "on_player_entered_poop")
-	
-		add_child(mushroom_inst)
-	
-		mushroom_inst.global_transform.origin = Vector3(
-			road_spawnx[random_line_num],
-			0.0,
-			startz
-		)
-		mushroom_inst.rotation_degrees.y = rand_range(0, 360)
+	var mushroom_inst = mushroom.instance()
+	mushroom_inst.connect("player_entered", self, "on_player_entered_mushroom")
 
-func on_player_entered_poop():
-	player.is_dead = true
+	add_child(mushroom_inst)
+
+	mushroom_inst.global_transform.origin = Vector3(
+		road_spawnx[random_line_num],
+		0.0,
+		startz
+	)
+	mushroom_inst.rotation_degrees.y = rand_range(0, 360)
+
+func on_player_entered_mushroom():
+	player.health += 1
