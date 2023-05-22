@@ -28,7 +28,6 @@ onready var mushroom:  PackedScene = preload("res://models/cartoon-assets/assets
 var startz: float = -40.0
 var road_spawnx: Array = [-3, -1.5, 0, 1.5, 3]
 var tree_startx: Array = [30, 20, 10, -10, -20, -30]
-var rand_spawn: Array = [1,2,3]
 
 onready var env_assets: Array = [tree1, tree2]
 
@@ -95,39 +94,22 @@ func _on_spawn_env_timer_timeout():
 func _on_spawn_obstacle_timer_timeout():
 	randomize()
 	#print("spawned an obstacle!")
-	spawn_obstacle_timer.wait_time = 1
+	spawn_obstacle_timer.wait_time = randi() % 5 + 1
 	
 	var random_line_num = randi() % 5
 	var prev_rand_line_n = null
 	
-	#coba
-	var random_spawn = randi() % 3 
-	var rock_inst
+	var line_count: int = randi() % 4 + 1
 	
-	var line_count: int
-	
-	#coba
-	if (rand_spawn[random_spawn] == 1):
-		line_count = randi() % 4 + 1
-	elif (rand_spawn[random_spawn] == 2):
-		line_count = randi() % 3 + 1
-	elif (rand_spawn[random_spawn] == 3):
-		line_count = 1
 	
 	for i in line_count:
 		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
 			random_line_num = randi() % 5
 		prev_rand_line_n = random_line_num
 		
-		if (rand_spawn[random_spawn] == 1):
-			rock_inst = rock.instance()
-			rock_inst.connect("player_entered", self, "on_player_entered_rock")
-		elif (rand_spawn[random_spawn] == 2):
-			rock_inst = poop.instance()
-			rock_inst.connect("player_entered", self, "on_player_entered_poop")
-		elif (rand_spawn[random_spawn] == 3):
-			rock_inst = mushroom.instance()
-			rock_inst.connect("player_entered", self, "on_player_entered_mushroom")
+		var rock_inst = rock.instance()
+		rock_inst.connect("player_entered", self, "on_player_entered_rock")
+	
 		
 		add_child(rock_inst)
 	
@@ -143,7 +125,7 @@ func on_player_entered_rock():
 	audio_hit.play()
 	player.health -= 1
 
-"""
+
 func _on_spawn_poop_timer_timeout():
 	randomize()
 	#print("spawned an obstacle!")
@@ -170,13 +152,13 @@ func _on_spawn_poop_timer_timeout():
 			startz
 		)
 		poop_inst.rotation_degrees.y = rand_range(0, 360)
-"""
+
 
 func on_player_entered_poop():
 	audio_poop.play()
 	player.health = 0
 
-"""	
+
 func _on_spawn_mushroom_timer_timeout():
 	randomize()
 	#print("spawned an obstacle!")
@@ -200,7 +182,7 @@ func _on_spawn_mushroom_timer_timeout():
 		startz
 	)
 	mushroom_inst.rotation_degrees.y = rand_range(0, 360)
-"""
+
 
 func on_player_entered_mushroom():
 	audio_healtup.play()
