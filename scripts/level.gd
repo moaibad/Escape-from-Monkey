@@ -6,6 +6,7 @@ onready var spawn_timer: Timer = $spawn_timer
 onready var spawn_env_timer: Timer = $spawn_env_timer
 onready var spawn_obstacle_timer: Timer = $spawn_obstacle_timer
 onready var spawn_poop_timer: Timer = $spawn_obstacle_timer
+onready var spawn_mushroom_timer: Timer = $spawn_obstacle_timer
 
 onready var coin: PackedScene = preload("res://scenes/coin.tscn")
 
@@ -16,6 +17,7 @@ onready var fence: PackedScene = preload("res://models/cartoon-assets/fence.tscn
 
 onready var rock:  PackedScene = preload("res://models/cartoon-assets/assets/rock/rock.tscn")
 onready var poop:  PackedScene = preload("res://models/cartoon-assets/assets/poop/poop.tscn")
+onready var mushroom:  PackedScene = preload("res://models/cartoon-assets/assets/mushroom/mushroom.tscn")
 
 var startz: float = -40.0
 var road_spawnx: Array = [-3, -1.5, 0, 1.5, 3]
@@ -140,6 +142,33 @@ func _on_spawn_poop_timer_timeout():
 			startz
 		)
 		poop_inst.rotation_degrees.y = rand_range(0, 360)
+
+func _on_spawn_mushroom_timer_timeout():
+	randomize()
+	#print("spawned an obstacle!")
+	spawn_mushroom_timer.wait_time = randi() % 5 + 1
+	
+	var random_line_num = randi() % 5
+	var prev_rand_line_n = null
+	
+	var line_count: int = randi() % 4 + 1
+	
+	for i in line_count:
+		while (prev_rand_line_n != null and prev_rand_line_n == random_line_num):
+			random_line_num = randi() % 5
+		prev_rand_line_n = random_line_num
+		
+		var mushroom_inst = mushroom.instance()
+		mushroom_inst.connect("player_entered", self, "on_player_entered_poop")
+	
+		add_child(mushroom_inst)
+	
+		mushroom_inst.global_transform.origin = Vector3(
+			road_spawnx[random_line_num],
+			0.0,
+			startz
+		)
+		mushroom_inst.rotation_degrees.y = rand_range(0, 360)
 
 func on_player_entered_poop():
 	player.is_dead = true
