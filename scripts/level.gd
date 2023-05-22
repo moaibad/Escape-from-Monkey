@@ -1,6 +1,5 @@
 extends Node
 
-# for coins
 onready var player: KinematicBody = $player_body
 onready var spawn_timer: Timer = $spawn_timer
 onready var spawn_env_timer: Timer = $spawn_env_timer
@@ -13,12 +12,8 @@ onready var audio_healtup: AudioStreamPlayer3D = $MushroomPickUp
 onready var audio_poop: AudioStreamPlayer3D = $PoopSoundEffect
 onready var audio_bgm: AudioStreamPlayer3D = $BGM
 
-
-onready var coin: PackedScene = preload("res://scenes/coin.tscn")
-
 onready var tree1: PackedScene = preload("res://models/cartoon-assets/assets/tree/tree.tscn")
 onready var tree2: PackedScene = preload("res://models/cartoon-assets/assets/tree/tree.tscn")
-
 onready var fence: PackedScene = preload("res://models/cartoon-assets/fence.tscn")
 
 onready var rock:  PackedScene = preload("res://models/cartoon-assets/assets/rock/rock.tscn")
@@ -32,7 +27,6 @@ var tree_startx: Array = [30, 20, 10, -10, -20, -30]
 onready var env_assets: Array = [tree1, tree2]
 
 const FENCE_COUNT: int = 30
-# example of using object pooling for fences
 var fences: Array = []
 var fencez: float = 0.0
 
@@ -123,6 +117,8 @@ func _on_spawn_obstacle_timer_timeout():
 
 func on_player_entered_rock():
 	audio_hit.play()
+	var target = get_node("/root/level/player_body/Camera")
+	target.start_camera_shake()
 	player.health -= 1
 
 
@@ -156,6 +152,8 @@ func _on_spawn_poop_timer_timeout():
 
 func on_player_entered_poop():
 	audio_poop.play()
+	var target = get_node("/root/level/player_body/Camera")
+	target.start_camera_shake()
 	player.health = 0
 
 
