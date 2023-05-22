@@ -8,6 +8,9 @@ onready var spawn_obstacle_timer: Timer = $spawn_obstacle_timer
 onready var spawn_poop_timer: Timer = $spawn_obstacle_timer
 onready var spawn_mushroom_timer: Timer = $spawn_obstacle_timer
 
+onready var audio_hit: AudioStreamPlayer3D = $HitRockSound
+onready var audio_healtup: AudioStreamPlayer3D = $MushroomPickUp
+
 onready var coin: PackedScene = preload("res://scenes/coin.tscn")
 
 onready var tree1: PackedScene = preload("res://models/cartoon-assets/assets/tree/tree.tscn")
@@ -113,6 +116,7 @@ func _on_spawn_obstacle_timer_timeout():
 
 
 func on_player_entered_rock():
+	audio_hit.play()
 	player.health -= 1
 
 
@@ -171,4 +175,7 @@ func _on_spawn_mushroom_timer_timeout():
 	mushroom_inst.rotation_degrees.y = rand_range(0, 360)
 
 func on_player_entered_mushroom():
+	audio_healtup.play()
 	player.health += 1
+	
+
