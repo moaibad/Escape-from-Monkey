@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/poop_sound_effect.mp3-db483d9019ed9e08c72fb61378e43aff.mp3str"
+
+[deps]
+
+source_file="res://sounds/poop_sound_effect.mp3"
+dest_files=[ "res://.import/poop_sound_effect.mp3-db483d9019ed9e08c72fb61378e43aff.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

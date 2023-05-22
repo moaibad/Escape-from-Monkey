@@ -10,6 +10,9 @@ onready var spawn_mushroom_timer: Timer = $spawn_obstacle_timer
 
 onready var audio_hit: AudioStreamPlayer3D = $HitRockSound
 onready var audio_healtup: AudioStreamPlayer3D = $MushroomPickUp
+onready var audio_poop: AudioStreamPlayer3D = $PoopSoundEffect
+onready var audio_bgm: AudioStreamPlayer3D = $BGM
+
 
 onready var coin: PackedScene = preload("res://scenes/coin.tscn")
 
@@ -35,6 +38,7 @@ var fencez: float = 0.0
 
 
 func _ready():
+	audio_bgm.play()
 	var x = 0
 	var y = 0
 	var z = 5
@@ -148,6 +152,7 @@ func _on_spawn_poop_timer_timeout():
 		poop_inst.rotation_degrees.y = rand_range(0, 360)
 
 func on_player_entered_poop():
+	audio_poop.play()
 	player.health = 0
 	
 func _on_spawn_mushroom_timer_timeout():

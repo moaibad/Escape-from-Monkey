@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/tanah_dalam.tres" type="Material" id=1]
 [ext_resource path="res://scenes/player/player_scene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sounds/118513__thefsoundman__punch_02.wav" type="AudioStream" id=3]
 [ext_resource path="res://sounds/health-pickup-6860.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scripts/level.gd" type="Script" id=5]
+[ext_resource path="res://sounds/poop_sound_effect.mp3" type="AudioStream" id=6]
+[ext_resource path="res://sounds/BGM.mp3" type="AudioStream" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 80, 80 )
@@ -61,6 +63,15 @@ unit_db = 50.0
 
 [node name="MushroomPickUp" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 4 )
+unit_db = 15.0
+
+[node name="PoopSoundEffect" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_db = 10.0
+
+[node name="BGM" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+unit_db = 75.0
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="spawn_env_timer" to="." method="_on_spawn_env_timer_timeout"]
